@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+
+
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -18,9 +16,12 @@ public class CameraController : MonoBehaviour
     private float yawSpeed = 400f; 
     
     
+    
 
     private float currentZoom = 10f;
     private float currentYaw = 0f;
+
+    
 
     private void Update()
     {
@@ -28,11 +29,16 @@ public class CameraController : MonoBehaviour
         currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
 
 
-        RotateWithMouse();
+        currentYaw += Input.GetAxis("Mouse X") * yawSpeed * Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            RotateWithMouse();
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
        
@@ -49,9 +55,10 @@ public class CameraController : MonoBehaviour
         transform.RotateAround(target.position, Vector3.up, currentYaw );
     }
 
-    void RotateWithMouse()
+   /* void RotateWithMouse()
     {
+        Cursor.lockState = CursorLockMode.None;
         currentYaw += Input.GetAxis("Mouse X") * yawSpeed * Time.deltaTime;
         
-    }
+    } */
 }

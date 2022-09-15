@@ -9,7 +9,11 @@ public class CharacterController : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody characterBody;
-
+    
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
     // Update is called once per frame
     void Update()
@@ -85,10 +89,10 @@ public class CharacterController : MonoBehaviour
 
     public void Shoot()
     {
-       /* RaycastHit result;
+       RaycastHit result;
         bool thereWasHit = Physics.Raycast(transform.position, transform.forward, out result, Mathf.Infinity);
         
-        Debug.DrawRay(transform.position, transform.forward * 50f, Color.green, 100f); */
+        Debug.DrawRay(transform.position, transform.forward * 50f, Color.green, 100f);
        
        
         

@@ -8,8 +8,8 @@ public class CameraController : MonoBehaviour
 
     public Vector3 offset;
     public float zoomSpeed = 4f;
-    public float minZoom = 5f;
-    public float maxZoom = 15f;
+    public float minZoom = 2f;
+    public float maxZoom = 5f;
 
     public float pitch = 2f;
 
@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
     
     
 
-    private float currentZoom = 10f;
+    private float currentZoom = 3f;
     private float currentYaw = 0f;
 
     
@@ -30,16 +30,22 @@ public class CameraController : MonoBehaviour
 
 
         currentYaw += Input.GetAxis("Mouse X") * yawSpeed * Time.deltaTime;
+        
+        
+        
+        
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+       /*if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             Cursor.lockState = CursorLockMode.None;
+            currentZoom = 2f;
         }
 
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             Cursor.lockState = CursorLockMode.Locked;
-        }
+            currentZoom = 3f;
+        } */
 
        
 

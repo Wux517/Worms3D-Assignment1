@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.Search;
 using UnityEngine;
@@ -9,7 +10,14 @@ public class CharacterController : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody characterBody;
+    [SerializeField] private Camera playerAimCamera;
+
     
+
+    
+    
+
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -18,20 +26,40 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        
+        if (Input.GetAxis("Horizontal") != 0  || Input.GetAxis("Vertical") != 0)
         {
             MovePlayerRelativeToCamera();
         }
+        
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+
+            playerAimCamera.depth = 2;
+            Cursor.lockState = CursorLockMode.None;
+            
+        }
+
+        if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            playerAimCamera.depth = 0;
+            Cursor.lockState = CursorLockMode.Locked;
+            
+        }
+        
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            Shoot();
+            //Shoot();
         }
+        
+        
+        
     }
 
     
@@ -76,6 +104,7 @@ public class CharacterController : MonoBehaviour
             transform.forward = forward;
             forward.y = 0;
         }
+        
 
         // Create Direction relative Input Vectors
         Vector3 forwardRelativeVerticalInput = playerVerticalInput * forward;
@@ -87,7 +116,7 @@ public class CharacterController : MonoBehaviour
         transform.Translate(cameraRelativeMovement * speed * Time.deltaTime, Space.World);
     }
 
-    public void Shoot()
+    /*public void Shoot()
     {
        RaycastHit result;
         bool thereWasHit = Physics.Raycast(transform.position, transform.forward, out result, Mathf.Infinity);
@@ -97,5 +126,5 @@ public class CharacterController : MonoBehaviour
        
         
         
-    }
+    }*/
 }

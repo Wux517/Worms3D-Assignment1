@@ -12,6 +12,7 @@ public class Throwing : MonoBehaviour
     public Transform cam;
     public Transform attackPoint;
     public GameObject objectToThrow;
+    
 
     public int totalThrows;
     public float throwCooldown;
@@ -24,7 +25,11 @@ public class Throwing : MonoBehaviour
 
     private void Start()
     {
-        readyToThrow = true;
+       
+        
+            readyToThrow = true;
+
+        
     }
 
     private void Update()
@@ -71,4 +76,7 @@ public class Throwing : MonoBehaviour
     {
         readyToThrow = true;
     }
+
+    
+
 }

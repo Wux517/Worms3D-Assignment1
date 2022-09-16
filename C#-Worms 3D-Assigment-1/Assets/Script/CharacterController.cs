@@ -12,11 +12,6 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private Rigidbody characterBody;
     [SerializeField] private Camera playerAimCamera;
 
-    
-
-    
-    
-
 
     void Start()
     {
@@ -26,27 +21,23 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (Input.GetAxis("Horizontal") != 0  || Input.GetAxis("Vertical") != 0)
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             MovePlayerRelativeToCamera();
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-
             playerAimCamera.depth = 2;
             Cursor.lockState = CursorLockMode.None;
-            
         }
 
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             playerAimCamera.depth = 0;
             Cursor.lockState = CursorLockMode.Locked;
-            
         }
-        
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -57,12 +48,8 @@ public class CharacterController : MonoBehaviour
         {
             //Shoot();
         }
-        
-        
-        
     }
 
-    
 
     private void Jump()
     {
@@ -70,7 +57,6 @@ public class CharacterController : MonoBehaviour
         {
             characterBody.AddForce(Vector3.up * 300f);
         }
-
     }
 
     private bool IsTouchingGround()
@@ -85,7 +71,7 @@ public class CharacterController : MonoBehaviour
         // Get player input
         float playerVerticalInput = Input.GetAxisRaw("Vertical");
         float playerHorizontalInput = Input.GetAxisRaw("Horizontal");
-        
+
 
         Vector3 direction = new Vector3(playerHorizontalInput, 0f, playerVerticalInput).normalized;
 
@@ -104,7 +90,7 @@ public class CharacterController : MonoBehaviour
             transform.forward = forward;
             forward.y = 0;
         }
-        
+
 
         // Create Direction relative Input Vectors
         Vector3 forwardRelativeVerticalInput = playerVerticalInput * forward;
@@ -115,6 +101,8 @@ public class CharacterController : MonoBehaviour
 
         transform.Translate(cameraRelativeMovement * speed * Time.deltaTime, Space.World);
     }
+
+   
 
     /*public void Shoot()
     {

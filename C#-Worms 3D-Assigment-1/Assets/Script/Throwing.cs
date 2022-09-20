@@ -2,24 +2,30 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Vector3 = UnityEngine.Vector3;
 
 public class Throwing : MonoBehaviour
 {
     [SerializeField] private Camera playerAimCamera;
+    [SerializeField] private TrajectoryLine lineRenderer;
     public Transform cam;
     public Transform attackPoint;
     public GameObject objectToThrow;
+    
     
 
     public int totalThrows;
     public float throwCooldown;
 
-    public KeyCode throwKey = KeyCode.F;
+    public KeyCode throwKey = KeyCode.Mouse0;
     public float throwForce;
     public float throwUpwardForce;
+    
+    
 
     bool readyToThrow;
 
@@ -34,6 +40,11 @@ public class Throwing : MonoBehaviour
 
     private void Update()
     {
+
+
+        Vector3 force = cam.forward * throwForce + transform.up * throwUpwardForce;
+        
+        lineRenderer.DrawCurvedTrajectory(force);
         
         if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0)
         {
@@ -59,6 +70,15 @@ public class Throwing : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit raycastHit))
         {
             //Direction Point A -> B = B - A
+            
+            //Linerenderer
+           /* Vector3 start = transform.position;
+
+            Vector3 end = transform.position + transform.forward * 50f;
+      
+            lineRenderer.SetPosition(0, start);
+            lineRenderer.SetPosition(1, end); */
+           
 
             forceDirection = (raycastHit.point - attackPoint.position).normalized;
         }
@@ -66,6 +86,8 @@ public class Throwing : MonoBehaviour
         Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwUpwardForce;
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
+        
+        
         
         totalThrows--;
 

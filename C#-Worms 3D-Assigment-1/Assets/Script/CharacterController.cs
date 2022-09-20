@@ -12,6 +12,11 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private Rigidbody characterBody;
     [SerializeField] private Camera playerAimCamera;
 
+    [SerializeField] private int playerIndex;
+
+    
+    
+    
 
     void Start()
     {
@@ -21,33 +26,36 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        
+        
+        if (TurnManager.GetInstance().IsItPlayerTurn(playerIndex))
         {
-            MovePlayerRelativeToCamera();
-        }
+            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            {
+                MovePlayerRelativeToCamera();
+            }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            playerAimCamera.depth = 2;
-            Cursor.lockState = CursorLockMode.None;
-        }
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                playerAimCamera.depth = 2;
+                Cursor.lockState = CursorLockMode.None;
+            }
 
-        if (Input.GetKeyUp(KeyCode.Mouse1))
-        {
-            playerAimCamera.depth = 0;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+            if (Input.GetKeyUp(KeyCode.Mouse1))
+            {
+                playerAimCamera.depth = 0;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
 
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
-        }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
+            }
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            //Shoot();
+          
         }
+        
     }
 
 

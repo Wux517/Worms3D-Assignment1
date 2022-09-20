@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerTurn : MonoBehaviour
 {
-  private int playerIndex;
+  public int playerIndex;
 
   public void SetPlayerTurn(int index)
   {

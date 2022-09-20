@@ -6,12 +6,16 @@ using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using MouseButton = UnityEngine.UIElements.MouseButton;
 using Vector3 = UnityEngine.Vector3;
 
 public class Throwing : MonoBehaviour
 {
     [SerializeField] private Camera playerAimCamera;
     [SerializeField] private TrajectoryLine lineRenderer;
+    
+    [SerializeField] private int playerIndex;
+    
     public Transform cam;
     public Transform attackPoint;
     public GameObject objectToThrow;
@@ -21,7 +25,7 @@ public class Throwing : MonoBehaviour
     public int totalThrows;
     public float throwCooldown;
 
-    public KeyCode throwKey = KeyCode.Mouse0;
+    private KeyCode throwKey = KeyCode.Mouse0;
     public float throwForce;
     public float throwUpwardForce;
     
@@ -40,16 +44,18 @@ public class Throwing : MonoBehaviour
 
     private void Update()
     {
-
-
-        Vector3 force = cam.forward * throwForce + transform.up * throwUpwardForce;
-        
-        lineRenderer.DrawCurvedTrajectory(force);
-        
-        if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0)
+        if (TurnManager.GetInstance().IsItPlayerTurn(playerIndex) && Input.GetKey(KeyCode.Mouse1))
         {
-            Throw();
+            Vector3 force = cam.forward * throwForce + transform.up * throwUpwardForce;
+        
+            lineRenderer.DrawCurvedTrajectory(force);
+        
+            if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0)
+            {
+                Throw();
+            }
         }
+        
     }
 
     private void Throw()

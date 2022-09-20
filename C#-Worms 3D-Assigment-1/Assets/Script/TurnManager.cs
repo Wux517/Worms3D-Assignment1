@@ -7,11 +7,14 @@ public class TurnManager : MonoBehaviour
 {
 
     private static TurnManager instance;
-    //[SerializeField] private PlayerTurn playerOne;
-    //[SerializeField] private PlayerTurn playerTwo;
+    [SerializeField] public PlayerTurn playerOne;
+    [SerializeField] public PlayerTurn playerTwo;
     [SerializeField] private float timeBetweenTurns;
     [SerializeField] private float turnDuration;
 
+    [SerializeField] private Camera main1;
+    [SerializeField] private Camera main2;
+   
     private static int activePlayerIndex;
     private bool waitingForNextTurn;
     private float turnDelay;
@@ -30,27 +33,40 @@ public class TurnManager : MonoBehaviour
 
     private void Update()
     {
-        if(waitingForNextTurn)
+
+        
+        currentTurnTime += Time.deltaTime;
+        
+        if (Input.GetKeyDown(KeyCode.L) || currentTurnTime >= turnDuration)
         {
-            turnDelay += Time.deltaTime;
+            
+                
+                turnDelay += Time.deltaTime;
             if (turnDelay >= timeBetweenTurns)
             {
-                turnDelay = 0;
-                waitingForNextTurn = false;
+                
                 ChangeTurn();
+                currentTurnTime = 0;
+                turnDelay = 0;
+                
+                if (activePlayerIndex == 1)
+                {
+                    main1.depth = 1;
+                    main2.depth = 0;
+                }
+            
+                else if (activePlayerIndex == 2)
+                {
+                    main1.depth = 0;
+                    main2.depth = 1;
+                }
+
             }
-        }
+             
+            
+        } 
         
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            ChangeTurn();
-        }
-        /* currentTurnTime += Time.deltaTime;
-         if (currentTurnTime >= turnDuration)
-         {
-             ChangeTurn();
-             currentTurnTime = 0;
-         } */
+        
     }
 
     public bool IsItPlayerTurn(int index)
@@ -74,12 +90,14 @@ public class TurnManager : MonoBehaviour
         if (activePlayerIndex == 1)
         {
             activePlayerIndex = 2;
+
             
             Debug.Log("Has Changed Player" + activePlayerIndex);
         }
         else if (activePlayerIndex == 2)
         {
             activePlayerIndex = 1;
+            
             
             Debug.Log("Has Changed Player" + activePlayerIndex);
         }

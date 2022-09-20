@@ -11,25 +11,33 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody characterBody;
     [SerializeField] private Camera playerAimCamera;
+    
+
+
+    //[SerializeField] private Camera main1;
+    //[SerializeField] private Camera main2;
+
 
     [SerializeField] private int playerIndex;
 
-    
-    
-    
 
-    void Start()
+    private void Awake()
     {
+        playerAimCamera.depth = -1;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
-        
-        
+
+
         if (TurnManager.GetInstance().IsItPlayerTurn(playerIndex))
         {
+
+
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
             {
                 MovePlayerRelativeToCamera();
@@ -43,7 +51,7 @@ public class CharacterController : MonoBehaviour
 
             if (Input.GetKeyUp(KeyCode.Mouse1))
             {
-                playerAimCamera.depth = 0;
+                playerAimCamera.depth = -1;
                 Cursor.lockState = CursorLockMode.Locked;
             }
 
@@ -55,6 +63,10 @@ public class CharacterController : MonoBehaviour
 
           
         }
+
+       
+        
+       
         
     }
 

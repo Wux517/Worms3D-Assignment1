@@ -11,6 +11,8 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody characterBody;
     [SerializeField] private Camera playerAimCamera;
+    [SerializeField] private float walkingTime;
+    [SerializeField] private int playerIndex;
     
 
 
@@ -18,8 +20,7 @@ public class CharacterController : MonoBehaviour
     //[SerializeField] private Camera main2;
 
 
-    [SerializeField] private int playerIndex;
-
+    private float currentWalkTime;
 
     private void Awake()
     {
@@ -40,7 +41,11 @@ public class CharacterController : MonoBehaviour
 
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
             {
-                MovePlayerRelativeToCamera();
+                currentWalkTime += Time.deltaTime;
+                if (currentWalkTime <= walkingTime)
+                {
+                  MovePlayerRelativeToCamera();
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -60,6 +65,8 @@ public class CharacterController : MonoBehaviour
             {
                 Jump();
             }
+
+            
 
           
         }

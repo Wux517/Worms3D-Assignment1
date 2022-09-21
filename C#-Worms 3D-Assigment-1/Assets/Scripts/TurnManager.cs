@@ -41,13 +41,12 @@ public class TurnManager : MonoBehaviour
         {
             
                 
-                turnDelay += Time.deltaTime;
-            if (turnDelay >= timeBetweenTurns)
-            {
+             
                 
                 ChangeTurn();
                 currentTurnTime = 0;
                 turnDelay = 0;
+            
                 
                 if (activePlayerIndex == 1)
                 {
@@ -61,7 +60,7 @@ public class TurnManager : MonoBehaviour
                     main2.depth = 1;
                 }
 
-            }
+            
              
             
         } 

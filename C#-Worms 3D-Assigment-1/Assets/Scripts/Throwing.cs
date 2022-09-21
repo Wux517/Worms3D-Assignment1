@@ -1,12 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Numerics;
-using Unity.VisualScripting;
+
 using UnityEngine;
-using UnityEngine.UIElements;
-using MouseButton = UnityEngine.UIElements.MouseButton;
 using Vector3 = UnityEngine.Vector3;
 
 public class Throwing : MonoBehaviour
@@ -35,15 +28,14 @@ public class Throwing : MonoBehaviour
 
     private void Start()
     {
-       
         
             readyToThrow = true;
-
-        
+            
     }
 
     private void Update()
     {
+        
         if (TurnManager.GetInstance().IsItPlayerTurn(playerIndex) && Input.GetKey(KeyCode.Mouse1))
         {
             Vector3 force = cam.forward * throwForce + transform.up * throwUpwardForce;
@@ -53,6 +45,8 @@ public class Throwing : MonoBehaviour
             if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0)
             {
                 Throw();
+
+                
             }
         }
         

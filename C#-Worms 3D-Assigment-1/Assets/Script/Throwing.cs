@@ -22,8 +22,9 @@ public class Throwing : MonoBehaviour
     
     
 
-    public int totalThrows;
-    public float throwCooldown;
+    private int totalThrows = 100;
+    private float throwCooldown;
+    
 
     private KeyCode throwKey = KeyCode.Mouse0;
     public float throwForce;
@@ -54,6 +55,12 @@ public class Throwing : MonoBehaviour
             {
                 Throw();
             }
+        }
+
+        if (TurnManager.GetInstance().currentTurnTime >= TurnManager.GetInstance().turnDuration)
+        {
+
+            totalThrows = 2;
         }
         
     }

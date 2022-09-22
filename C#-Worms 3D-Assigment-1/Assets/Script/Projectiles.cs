@@ -6,6 +6,7 @@ using UnityEngine;
 public class Projectiles : MonoBehaviour
 {
     public int damage;
+    public int objectDamage;
 
     private Rigidbody rb;
 
@@ -36,6 +37,18 @@ public class Projectiles : MonoBehaviour
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             
             enemy.TakeDamage(damage);
+            
+            
+            
+            Destroy(gameObject);
+        }
+        
+        if (collision.gameObject.GetComponent<DestructableWall>() != null)
+        {
+            DestructableWall enemy = collision.gameObject.GetComponent<DestructableWall>();
+            
+            enemy.TakeObjectDamage(objectDamage);
+            
             
             Destroy(gameObject);
         }

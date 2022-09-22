@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
+  objectDamage: 5
 --- !u!1 &7902581208777011789
 GameObject:
   m_ObjectHideFlags: 0

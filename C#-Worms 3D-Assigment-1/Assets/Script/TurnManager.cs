@@ -10,15 +10,19 @@ public class TurnManager : MonoBehaviour
     [SerializeField] public PlayerTurn playerOne;
     [SerializeField] public PlayerTurn playerTwo;
     [SerializeField] private float timeBetweenTurns;
-    [SerializeField] private float turnDuration;
+    
+    [SerializeField] public float turnDuration;
+    public float currentTurnTime;
 
     [SerializeField] private Camera main1;
     [SerializeField] private Camera main2;
    
     private static int activePlayerIndex;
     private bool waitingForNextTurn;
+    
     private float turnDelay;
-    private float currentTurnTime;
+    
+    
 
     private void Awake()
     {
@@ -37,17 +41,13 @@ public class TurnManager : MonoBehaviour
         
         currentTurnTime += Time.deltaTime;
         
-        if (Input.GetKeyDown(KeyCode.L) || currentTurnTime >= turnDuration)
+        if (currentTurnTime >= turnDuration)
         {
             
                 
-                turnDelay += Time.deltaTime;
-            if (turnDelay >= timeBetweenTurns)
-            {
-                
+            
                 ChangeTurn();
-                currentTurnTime = 0;
-                turnDelay = 0;
+                
                 
                 if (activePlayerIndex == 1)
                 {
@@ -55,15 +55,18 @@ public class TurnManager : MonoBehaviour
                     main2.depth = 0;
                 }
             
-                else if (activePlayerIndex == 2)
+                if (activePlayerIndex == 2)
                 {
                     main1.depth = 0;
                     main2.depth = 1;
+                    Debug.Log("Has changed camera");
                 }
 
-            }
-             
-            
+                currentTurnTime = 0;
+                
+                
+
+
         } 
         
         
@@ -85,6 +88,8 @@ public class TurnManager : MonoBehaviour
         waitingForNextTurn = true;
     }
 
+    
+
     public static void ChangeTurn()
     {
         if (activePlayerIndex == 1)
@@ -101,6 +106,6 @@ public class TurnManager : MonoBehaviour
             
             Debug.Log("Has Changed Player" + activePlayerIndex);
         }
-            
+        
     }
 }

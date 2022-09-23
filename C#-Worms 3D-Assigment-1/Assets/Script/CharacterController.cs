@@ -15,14 +15,10 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float walkingTime;
     
     [SerializeField] private int playerIndex;
-
-
-    //[SerializeField] private Camera main1;
-    //[SerializeField] private Camera main2;
-
+    
 
     private float currentWalkTime;
-    private float timer;
+    
 
     private void Awake()
     {
@@ -30,10 +26,34 @@ public class CharacterController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    private void Update()
+    {
 
+        if (TurnManager.GetInstance().IsItPlayerTurn(playerIndex))
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                playerAimCamera.depth = 2;
+                Cursor.lockState = CursorLockMode.None;
+            }
+
+            if (Input.GetKeyUp(KeyCode.Mouse1))
+            {
+                playerAimCamera.depth = -1;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+
+        }
+
+    }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
 
@@ -50,32 +70,13 @@ public class CharacterController : MonoBehaviour
                   MovePlayerRelativeToCamera();
                 }
             }
-
-            if (Input.GetKeyDown(KeyCode.Mouse1))
-            {
-                playerAimCamera.depth = 2;
-                Cursor.lockState = CursorLockMode.None;
-            }
-
-            if (Input.GetKeyUp(KeyCode.Mouse1))
-            {
-                playerAimCamera.depth = -1;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Jump();
-            }
-
-          
+            
         }
 
         if (TurnManager.GetInstance().currentTurnTime >= TurnManager.GetInstance().turnDuration)
         {
 
-            currentWalkTime = 5;
+            currentWalkTime = 15;
         }
 
 

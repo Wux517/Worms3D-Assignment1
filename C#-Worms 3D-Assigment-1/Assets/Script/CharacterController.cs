@@ -5,6 +5,7 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.Search;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CharacterController : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float walkingTime;
     
     [SerializeField] private int playerIndex;
+
+    public float maxSlopeAngle;
+    private RaycastHit slopeHit;
     
 
     private float currentWalkTime;
@@ -24,6 +28,36 @@ public class CharacterController : MonoBehaviour
     {
         playerAimCamera.depth = -1;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+    
+    void FixedUpdate()
+    {
+
+
+        if (TurnManager.GetInstance().IsItPlayerTurn(playerIndex))
+        {
+
+
+            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            {
+                currentWalkTime += Time.deltaTime;
+
+                if (currentWalkTime <= walkingTime)
+                {
+                    MovePlayerRelativeToCamera();
+                }
+            }
+            
+        }
+
+        if (TurnManager.GetInstance().currentTurnTime >= TurnManager.GetInstance().turnDuration)
+        {
+
+            currentWalkTime = 15;
+        }
+
+
+
     }
 
     private void Update()
@@ -53,35 +87,7 @@ public class CharacterController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
-
-
-        if (TurnManager.GetInstance().IsItPlayerTurn(playerIndex))
-        {
-
-
-            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-            {
-                currentWalkTime += Time.deltaTime;
-
-                if (currentWalkTime <= walkingTime)
-                {
-                  MovePlayerRelativeToCamera();
-                }
-            }
-            
-        }
-
-        if (TurnManager.GetInstance().currentTurnTime >= TurnManager.GetInstance().turnDuration)
-        {
-
-            currentWalkTime = 15;
-        }
-
-
-
-    }
+    
 
 
     private void Jump()
@@ -91,6 +97,22 @@ public class CharacterController : MonoBehaviour
             characterBody.AddForce(Vector3.up * 300f);
         }
     }
+
+   /* private bool OnSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, 1f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
+        }
+
+        return false;
+    }
+
+    private Vector3 GetSlopeMoveDirection()
+    {
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+    } */
 
     private bool IsTouchingGround()
     {

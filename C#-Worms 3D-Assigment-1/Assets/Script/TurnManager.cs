@@ -67,9 +67,24 @@ public class TurnManager : MonoBehaviour
                 
 
 
-        } 
-        
-        
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            ChangeTurn();
+            if (activePlayerIndex == 1)
+            {
+                main1.depth = 1;
+                main2.depth = 0;
+            }
+            
+            if (activePlayerIndex == 2)
+            {
+                main1.depth = 0;
+                main2.depth = 1;
+                Debug.Log("Has changed camera");
+            }
+        }
     }
 
     public bool IsItPlayerTurn(int index)

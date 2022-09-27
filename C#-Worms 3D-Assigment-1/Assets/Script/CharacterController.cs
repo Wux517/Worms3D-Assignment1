@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.Search;
@@ -19,6 +20,7 @@ public class CharacterController : MonoBehaviour
 
     public float maxSlopeAngle;
     private RaycastHit slopeHit;
+    
     
 
     private float currentWalkTime;
@@ -157,7 +159,35 @@ public class CharacterController : MonoBehaviour
         transform.Translate(cameraRelativeMovement * speed * Time.deltaTime, Space.World);
     }
 
-   
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "jumpPadLeft")
+        {
+            Debug.Log("Hover");
+
+            characterBody.AddForce(Vector3.up * 20 + Vector3.forward * 20 + Vector3.right * 20);
+        }
+        if (other.gameObject.tag == "jumpPadLeftP2")
+        {
+            Debug.Log("Hover");
+
+            characterBody.AddForce(Vector3.up * 20 + Vector3.forward * 20 + Vector3.left * 20);
+        }
+        
+        if (other.gameObject.tag == "jumpPadRight")
+        {
+            Debug.Log("Hover");
+
+            characterBody.AddForce(Vector3.up * 20 + Vector3.back * 20 + Vector3.right * 20);
+        }
+        if (other.gameObject.tag == "jumpPadRightP2")
+        {
+            Debug.Log("Hover");
+
+            characterBody.AddForce(Vector3.up * 20 + Vector3.back * 20 + Vector3.left * 20);
+        }
+    }
 
     /*public void Shoot()
     {

@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - jumpPad
+  - jumpPadLeft
+  - jumpPadRight
+  - jumpPadLeftP2
+  - jumpPadRightP2
   layers:
   - Default
   - TransparentFX

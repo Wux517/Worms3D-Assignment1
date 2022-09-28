@@ -1,1 +1,0 @@
-all *.png files are original image files created with blender.

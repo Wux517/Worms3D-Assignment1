@@ -13,7 +13,7 @@ public class Throwing : MonoBehaviour
 {
     [SerializeField] private Camera playerAimCamera;
     [SerializeField] private TrajectoryLine lineRenderer;
-    
+    [SerializeField] private LayerMask ignoreMask;
     [SerializeField] private int playerIndex;
     
     public Transform cam;
@@ -80,8 +80,9 @@ public class Throwing : MonoBehaviour
         Ray ray = playerAimCamera.ScreenPointToRay(Input.mousePosition);
         
 
-        if (Physics.Raycast(ray, out RaycastHit raycastHit))
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity, ignoreMask))
         {
+            Debug.Log("hitting " + raycastHit.collider.name);
             //Direction Point A -> B = B - A
             
             //Linerenderer

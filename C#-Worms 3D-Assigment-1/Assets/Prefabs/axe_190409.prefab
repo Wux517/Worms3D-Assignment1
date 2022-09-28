@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2082696629458638911}
   - component: {fileID: 2082696629458638910}
   - component: {fileID: 2082696629458638908}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: axe_190409
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163705914423233172}
   m_LocalRotation: {x: 0.13742612, y: -0.04301558, z: -0.0059738145, w: -0.98955953}
-  m_LocalPosition: {x: -0.023621373, y: 0.037388027, z: 0.02353616}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.023837, y: 0.046165, z: 0.02106}
+  m_LocalScale: {x: 1, y: 0.57822, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1377455811597082998}
@@ -61,10 +61,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.20985581
-  m_Height: 1.3054334
+  m_Radius: 0.16440003
+  m_Height: 0.9440276
   m_Direction: 1
-  m_Center: {x: 0.07481928, y: 0.019744813, z: -0.13622446}
+  m_Center: {x: 0.074819215, y: 0.065438464, z: -0.09076858}
 --- !u!114 &2082696629458638908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 1377455811597082998}
   - component: {fileID: 4308427102399010876}
   - component: {fileID: 787885561712721064}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

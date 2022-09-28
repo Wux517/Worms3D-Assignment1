@@ -10,11 +10,15 @@ public class Projectiles : MonoBehaviour
 
     private Rigidbody rb;
 
+    private float projectileLifetime = 10;
+    private float currentLifetime;
+    
     private bool targetHit;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        currentLifetime = 0;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -41,6 +45,7 @@ public class Projectiles : MonoBehaviour
             
             
             Destroy(gameObject);
+            
         }
         
         if (collision.gameObject.GetComponent<DestructableWall>() != null)
@@ -51,6 +56,7 @@ public class Projectiles : MonoBehaviour
             
             
             Destroy(gameObject);
+            
         }
 
         rb.isKinematic = true;
@@ -62,5 +68,12 @@ public class Projectiles : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        currentLifetime += 1 * Time.deltaTime;
+
+        if (currentLifetime >= projectileLifetime)
+        {
+            Destroy(this.gameObject);
+        }
+
     }
 }

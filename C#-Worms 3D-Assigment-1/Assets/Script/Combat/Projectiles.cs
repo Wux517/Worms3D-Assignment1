@@ -10,6 +10,8 @@ public class Projectiles : MonoBehaviour
 
     private Rigidbody rb;
 
+    [SerializeField] private GameObject projectile;
+
     private float projectileLifetime = 10;
     private float currentLifetime;
     
@@ -45,6 +47,7 @@ public class Projectiles : MonoBehaviour
             
             
             Destroy(gameObject);
+            Debug.Log("Has Destroyed PROJ ENEMY");
             
         }
         
@@ -56,6 +59,7 @@ public class Projectiles : MonoBehaviour
             
             
             Destroy(gameObject);
+            Debug.Log("Has Destroyed PROJ WALL");
             
         }
 
@@ -72,7 +76,8 @@ public class Projectiles : MonoBehaviour
 
         if (currentLifetime >= projectileLifetime)
         {
-            Destroy(this.gameObject);
+            Destroy(projectile);
+            Debug.Log("Has Destroyed PROJ TIMER");
         }
 
     }

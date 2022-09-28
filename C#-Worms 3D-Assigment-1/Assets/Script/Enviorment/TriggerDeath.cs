@@ -11,7 +11,13 @@ public class TriggerDeath : MonoBehaviour
 
    private void OnTriggerEnter(Collider other)
    {
-      Destroy(player1);
-      Destroy(player2);
+      if (other.CompareTag("Player"))
+      {
+         Destroy(player1);
+         Destroy(player2);
+         
+         Debug.Log("Has Destroyed TRIGGER");
+      }
+      
    }
 }

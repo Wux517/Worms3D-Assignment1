@@ -79,6 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   objectDamage: 5
+  projectile: {fileID: 1163705914423233172}
 --- !u!1 &7902581208777011789
 GameObject:
   m_ObjectHideFlags: 0

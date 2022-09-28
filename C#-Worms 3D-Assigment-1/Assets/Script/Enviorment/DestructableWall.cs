@@ -25,6 +25,7 @@ public class DestructableWall : MonoBehaviour
                 }
             }
             Destroy(gameObject);
+            Debug.Log("Has Destroyed WALL");
         }
     }
 

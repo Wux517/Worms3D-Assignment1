@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-   public int health;
+   public float health = 10;
 
    public void TakeDamage(int damage)
    {
@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
       {
          Destroy(gameObject);
          Debug.Log("Has Destroyed ENEMEMY");
+         
+         
       }
    }
 }

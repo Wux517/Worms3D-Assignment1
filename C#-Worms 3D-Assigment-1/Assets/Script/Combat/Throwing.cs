@@ -22,7 +22,7 @@ public class Throwing : MonoBehaviour
     
     
 
-    private int totalThrows = 100;
+    public int totalThrows = 2;
     private float throwCooldown;
     
 

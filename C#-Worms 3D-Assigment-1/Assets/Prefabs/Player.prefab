@@ -181,8 +181,16 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 8.29, y: 1.843, z: 38.31}
+  - {x: 8.29034, y: 1.8430673, z: 38.30991}
+  - {x: 8.290682, y: 1.8431195, z: 38.309814}
+  - {x: 8.291022, y: 1.8431568, z: 38.309723}
+  - {x: 8.291363, y: 1.8431792, z: 38.309628}
+  - {x: 8.291704, y: 1.8431867, z: 38.309536}
+  - {x: 8.292045, y: 1.8431792, z: 38.309444}
+  - {x: 8.292386, y: 1.8431568, z: 38.30935}
+  - {x: 8.2927265, y: 1.8431195, z: 38.309258}
+  - {x: 8.293067, y: 1.8430673, z: 38.309162}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -283,10 +291,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAimCamera: {fileID: 0}
   lineRenderer: {fileID: 3577286399051000394}
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 0
   playerIndex: 1
   cam: {fileID: 0}
   attackPoint: {fileID: 0}
   objectToThrow: {fileID: 1163705914423233172, guid: 3f7867fe92237104e80df0cb9757f9c3, type: 3}
+  totalThrows: 2
   throwForce: 38
   throwUpwardForce: 37
 --- !u!114 &3577286399051000394

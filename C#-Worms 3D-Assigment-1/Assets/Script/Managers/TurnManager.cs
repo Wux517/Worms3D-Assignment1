@@ -7,8 +7,7 @@ public class TurnManager : MonoBehaviour
 {
 
     private static TurnManager instance;
-    [SerializeField] public PlayerTurn playerOne;
-    [SerializeField] public PlayerTurn playerTwo;
+   
     [SerializeField] private float timeBetweenTurns;
     
     [SerializeField] public float turnDuration;

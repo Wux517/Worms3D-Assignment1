@@ -166,26 +166,26 @@ public class CharacterController : MonoBehaviour
         {
             Debug.Log("Hover");
 
-            characterBody.AddForce(Vector3.up * 20 + Vector3.forward * 20 + Vector3.right * 20);
+            characterBody.AddForce(Vector3.up * 40 + Vector3.forward * 20 + Vector3.right * 20);
         }
         if (other.gameObject.tag == "jumpPadLeftP2")
         {
             Debug.Log("Hover");
 
-            characterBody.AddForce(Vector3.up * 20 + Vector3.forward * 20 + Vector3.left * 20);
+            characterBody.AddForce(Vector3.up * 40 + Vector3.forward * 20 + Vector3.left * 20);
         }
         
         if (other.gameObject.tag == "jumpPadRight")
         {
             Debug.Log("Hover");
 
-            characterBody.AddForce(Vector3.up * 20 + Vector3.back * 20 + Vector3.right * 20);
+            characterBody.AddForce(Vector3.up * 40 + Vector3.back * 20 + Vector3.right * 20);
         }
         if (other.gameObject.tag == "jumpPadRightP2")
         {
             Debug.Log("Hover");
 
-            characterBody.AddForce(Vector3.up * 20 + Vector3.back * 20 + Vector3.left * 20);
+            characterBody.AddForce(Vector3.up * 40 + Vector3.back * 20 + Vector3.left * 20);
         }
     }
 

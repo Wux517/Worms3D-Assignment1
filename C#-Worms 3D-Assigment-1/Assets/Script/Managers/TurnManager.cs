@@ -45,22 +45,22 @@ public class TurnManager : MonoBehaviour
             
                 
             
-                ChangeTurn();
                 
                 
                 if (activePlayerIndex == 1)
                 {
-                    main1.depth = 1;
-                    main2.depth = 0;
+                    main1.depth = 0;
+                    main2.depth = 1;
                 }
             
                 if (activePlayerIndex == 2)
                 {
-                    main1.depth = 0;
-                    main2.depth = 1;
+                    main1.depth = 1;
+                    main2.depth = 0;
                     Debug.Log("Has changed camera");
                 }
 
+                ChangeTurn();
                 currentTurnTime = 0;
                 
                 

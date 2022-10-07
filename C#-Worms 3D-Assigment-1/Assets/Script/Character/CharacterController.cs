@@ -14,7 +14,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private Rigidbody characterBody;
     [SerializeField] private Camera playerAimCamera;
     
-    [SerializeField] private float walkingTime;
+    [SerializeField] private float walkingTime = 4;
     
     [SerializeField] private int playerIndex;
 
@@ -30,6 +30,8 @@ public class CharacterController : MonoBehaviour
     {
         playerAimCamera.depth = -1;
         Cursor.lockState = CursorLockMode.Locked;
+
+        currentWalkTime = 0;
     }
     
     void FixedUpdate()
@@ -52,11 +54,7 @@ public class CharacterController : MonoBehaviour
             
         }
 
-        if (TurnManager.GetInstance().currentTurnTime >= TurnManager.GetInstance().turnDuration)
-        {
-
-            currentWalkTime = 15;
-        }
+       
 
 
 
@@ -74,16 +72,22 @@ public class CharacterController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                playerAimCamera.depth = 2;
+                //playerAimCamera.depth = 2;
                 Cursor.lockState = CursorLockMode.None;
             }
 
             if (Input.GetKeyUp(KeyCode.Mouse1))
             {
-                playerAimCamera.depth = -1;
+                //playerAimCamera.depth = -1;
                 Cursor.lockState = CursorLockMode.Locked;
             }
 
+        }
+        
+        if (TurnManager.GetInstance().currentTurnTime >= 9.99f)
+        {
+
+            currentWalkTime = 0;
         }
 
     }

@@ -45,7 +45,7 @@ public class Throwing : MonoBehaviour
 
     private void Update()
     {
-        if (TurnManager.GetInstance().IsItPlayerTurn(playerIndex) && Input.GetKey(KeyCode.Mouse1))
+        if (TurnManager.GetInstance().IsItPlayerTurn(playerIndex))
         {
             Vector3 force = cam.forward * throwForce + transform.up * throwUpwardForce;
         
@@ -57,7 +57,7 @@ public class Throwing : MonoBehaviour
             }
         }
 
-        if (TurnManager.GetInstance().currentTurnTime >= TurnManager.GetInstance().turnDuration)
+        if (TurnManager.GetInstance().currentTurnTime >= 9.99f)
         {
 
             totalThrows = 2;
